@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create App Icons</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="downloadIcon(72)">Download 72x72</button>
+    <button onclick="downloadIcon(96)">Download 96x96</button>
+    <button onclick="downloadIcon(128)">Download 128x128</button>
+    <button onclick="downloadIcon(144)">Download 144x144</button>
+    <button onclick="downloadIcon(152)">Download 152x152</button>
+    <button onclick="downloadIcon(192)">Download 192x192</button>
+    <button onclick="downloadIcon(384)">Download 384x384</button>
+    <button onclick="downloadIcon(512)">Download 512x512</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Draw the alarm clock icon
+        function drawIcon() {
+            // Clear canvas
+            ctx.clearRect(0, 0, 512, 512);
+            
+            // Background circle
+            ctx.fillStyle = '#007AFF';
+            ctx.beginPath();
+            ctx.arc(256, 256, 240, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Clock face
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(256, 256, 180, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Clock border
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.arc(256, 256, 180, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Clock hands
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 12;
+            ctx.lineCap = 'round';
+            
+            // Hour hand (pointing to 7)
+            ctx.beginPath();
+            ctx.moveTo(256, 256);
+            ctx.lineTo(256 - 60, 256 + 80);
+            ctx.stroke();
+            
+            // Minute hand (pointing to 12)
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.moveTo(256, 256);
+            ctx.lineTo(256, 256 - 120);
+            ctx.stroke();
+            
+            // Center dot
+            ctx.fillStyle = '#333333';
+            ctx.beginPath();
+            ctx.arc(256, 256, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Alarm bells
+            ctx.strokeStyle = '#FF3B30';
+            ctx.lineWidth = 16;
+            ctx.lineCap = 'round';
+            
+            // Left bell
+            ctx.beginPath();
+            ctx.arc(156, 156, 30, 0.2 * Math.PI, 0.8 * Math.PI);
+            ctx.stroke();
+            
+            // Right bell
+            ctx.beginPath();
+            ctx.arc(356, 156, 30, 0.2 * Math.PI, 0.8 * Math.PI);
+            ctx.stroke();
+            
+            // Numbers
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 36px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            ctx.fillText('12', 256, 120);
+            ctx.fillText('3', 370, 256);
+            ctx.fillText('6', 256, 392);
+            ctx.fillText('9', 142, 256);
+        }
+
+        function downloadIcon(size) {
+            // Create a new canvas with the desired size
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = size;
+            tempCanvas.height = size;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // Scale and draw the icon
+            tempCtx.drawImage(canvas, 0, 0, size, size);
+            
+            // Download the image
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = tempCanvas.toDataURL();
+            link.click();
+        }
+
+        // Draw the icon when the page loads
+        drawIcon();
+    </script>
+</body>
+</html>

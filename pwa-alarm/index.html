@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm App</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="icon-192.png" type="image/png">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1>Alarms</h1>
+            <button id="addAlarmBtn" class="add-btn">+</button>
+        </header>
+
+        <main class="main">
+            <div id="alarmsList" class="alarms-list">
+                <!-- Alarms will be dynamically added here -->
+            </div>
+        </main>
+
+        <!-- Add Alarm Modal -->
+        <div id="addAlarmModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add Alarm</h2>
+                    <button id="closeModal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <label for="alarmTime">Time:</label>
+                    <input type="time" id="alarmTime" required>
+                    
+                    <label for="alarmLabel">Label (optional):</label>
+                    <input type="text" id="alarmLabel" placeholder="Wake up, Meeting, etc.">
+                    
+                    <div class="repeat-options">
+                        <label>Repeat:</label>
+                        <div class="days">
+                            <button type="button" class="day-btn" data-day="sun">S</button>
+                            <button type="button" class="day-btn" data-day="mon">M</button>
+                            <button type="button" class="day-btn" data-day="tue">T</button>
+                            <button type="button" class="day-btn" data-day="wed">W</button>
+                            <button type="button" class="day-btn" data-day="thu">T</button>
+                            <button type="button" class="day-btn" data-day="fri">F</button>
+                            <button type="button" class="day-btn" data-day="sat">S</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveAlarm" class="save-btn">Save Alarm</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alarm Notification Modal -->
+        <div id="alarmNotification" class="alarm-modal hidden">
+            <div class="alarm-content">
+                <div class="alarm-icon">⏰</div>
+                <h2 id="alarmTitle">Alarm</h2>
+                <p id="alarmTime" class="alarm-time"></p>
+                <div class="alarm-actions">
+                    <button id="snoozeBtn" class="snooze-btn">Snooze (5 min)</button>
+                    <button id="dismissBtn" class="dismiss-btn">Dismiss</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

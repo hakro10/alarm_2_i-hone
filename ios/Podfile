@@ -31,5 +31,16 @@ target 'AlarmApp' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['WARNING_CFLAGS'] = ''
+        config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
+        config.build_settings['CLANG_WARN_IMPLICIT_CONVERSION_LITERAL_TO_ENUM'] = 'NO'
+        config.build_settings['CLANG_WARN_INT_CONVERSION'] = 'NO'
+        config.build_settings['OTHER_CFLAGS'] = ''
+        config.build_settings['OTHER_CPLUSPLUSFLAGS'] = ''
+      end
+    end
   end
 end
