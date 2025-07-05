@@ -9,7 +9,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-native$': 'react-native-web'
+      'react-native
+: 'react-native-web'
     },
     extensions: ['.web.js', '.js', '.json', '.web.ts', '.ts', '.tsx'],
   },
@@ -21,7 +22,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['module:metro-react-native-babel-preset']
+            presets: [
+              'module:metro-react-native-babel-preset',
+              ['@babel/preset-env', { targets: { node: 'current' } }],
+              '@babel/preset-typescript',
+            ]
           }
         }
       },
@@ -41,5 +46,3 @@ module.exports = {
   },
   mode: 'development'
 };
-
-// ... existing code ...
