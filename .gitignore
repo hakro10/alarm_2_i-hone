@@ -35,6 +35,28 @@ local.properties
 !debug.keystore
 .kotlin/
 
+
+# Node modules
+node_modules/
+
+# Build output
+/dist
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Misc
+.env
+
 # node.js
 #
 node_modules/
